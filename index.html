@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Imersão Dev
+    </title>
+    <style>
+        * {
+            text-align: center;
+        }
+        
+        body {
+            font-family: "Roboto Mono", monospace;
+            min-height: 400px;
+            background-image: url("https://images.alphacoders.com/119/1192299.jpg");
+            background-color: #111;
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            height: 100vh;
+        }
+        
+        .page-title {
+            color: #ffffff;
+            margin: 0 0 5px;
+        }
+        
+        .page-subtitle {
+            color: #ffffff;
+            margin-top: 5px;
+        }
+        
+        .page-logo {
+            width: 200px;
+        }
+        
+        .alura-logo {
+            width: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        table {
+            border: 2px solid white;
+            border-collapse: collapse;
+        }
+        
+        h1 {
+            color: white;
+        }
+        
+        h2 {
+            color: white;
+        }
+        
+        th,
+        tr,
+        td {
+            border: solid 1px white;
+            color: white;
+        }
+        
+        button {
+            background-color: #002351;
+            color: #f6f6f6;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tabela Cod Mobile</h1>
+
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Vitórias</th>
+                <th>Kills</th>
+                <th>Derrotas</th>
+                <th>Conquistas</th>
+                <th>Pontos Totais</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-corpo">
+            <!-- Corpo da tabela -->
+        </tbody>
+    </table>
+
+    <!-- Formulário para adicionar usuários -->
+    <h2>Adicionar Usuário</h2>
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="number" id="vitorias" placeholder="Vitórias">
+    <input type="number" id="kills" placeholder="Kills">
+    <input type="number" id="derrotas" placeholder="Derrotas">
+    <input type="number" id="conquistas" placeholder="Conquistas">
+    <button onclick="adicionarUsuario()">Adicionar</button>
+
+    <script>
+        function adicionarUsuario() {
+            const nome = document.getElementById("nome").value;
+            const vitorias = parseInt(document.getElementById("vitorias").value) || 0;
+            const kills = parseInt(document.getElementById("kills").value) || 0;
+            const derrotas = parseInt(document.getElementById("derrotas").value) || 0;
+            const conquistas = parseInt(document.getElementById("conquistas").value) || 0;
+
+            const pontosTotais = calcularPontos(vitorias, kills, derrotas, conquistas);
+
+            const tabelaCorpo = document.getElementById("tabela-corpo");
+            const newRow = tabelaCorpo.insertRow();
+
+            const cellNome = newRow.insertCell(0);
+            const cellVitorias = newRow.insertCell(1);
+            const cellKills = newRow.insertCell(2);
+            const cellDerrotas = newRow.insertCell(3);
+            const cellConquistas = newRow.insertCell(4);
+            const cellPontosTotais = newRow.insertCell(5);
+
+            cellNome.innerHTML = nome;
+            cellVitorias.innerHTML = vitorias;
+            cellKills.innerHTML = kills;
+            cellDerrotas.innerHTML = derrotas;
+            cellConquistas.innerHTML = conquistas;
+            cellPontosTotais.innerHTML = pontosTotais;
+        }
+
+        function calcularPontos(vitorias, kills, derrotas, conquistas) {
+            // Fórmula para calcular pontos - você pode ajustar essa lógica conforme necessário
+            const pontos = vitorias * 3 + kills * 2 - derrotas * 1 + conquistas * 5;
+            return pontos;
+        }
+    </script>
+
+</body>
+
+</html>
